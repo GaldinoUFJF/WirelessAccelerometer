@@ -315,9 +315,9 @@ if __name__ == "__main__":
     filename=datetime.datetime.now().strftime("%H%M%S-%Y%m%d")
     titulo=unicode(datetime.datetime.now())
     for i in range (1,n+1):
-	accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_XOUT0)
+	#accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_XOUT0)
 	#accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_YOUT0)
-	#accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_ZOUT0)
+	accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_ZOUT0)
 	accel_data[i,1]=int(round(time.time()*1000))-tempo
 	while (int(round(time.time()*1000))-tempo == accel_data[i,1]):
 		pass
