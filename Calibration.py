@@ -174,7 +174,7 @@ class mpu6050:
         	#Write the new X acceleration offset
 		self.bus.write_byte_data(self.address, self.ACCEL_Z1, ctypes.c_int8(oz2 >> 8).value)
 		self.bus.write_byte_data(self.address, self.ACCEL_Z0, ctypes.c_int8(oz2).value)
-		ax2=0;ay2=0;az2=0;
+		ax=0;ay=0;az=0;
 		for i in range (0,n):
                         px=ax; py=ay; pz=az;
                         while (px==ax):
