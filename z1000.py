@@ -311,23 +311,21 @@ if __name__ == "__main__":
     n=duracao*1000
     accel_data= numpy.zeros((n+1,2))
     accel_data[0,0]=mpu.get_temp()
-	p=int(duracao*1000000/n)
-	accel_data[1,1]=0
-tempo=int(round(time.time()*1000000))
-filename=datetime.datetime.now().strftime("%H%M%S-%Y%m%d")
-titulo=unicode(datetime.datetime.now())
-for i in range (1,n+1):
+    tempo=int(round(time.time()*1000))
+    filename=datetime.datetime.now().strftime("%H%M%S-%Y%m%d")
+    titulo=unicode(datetime.datetime.now())
+    for i in range (1,n+1):
 	#accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_XOUT0)
 	#accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_YOUT0)
 	accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_ZOUT0)
-	accel_data[i,1]=int(round(time.time()*1000000))-tempo
-	while (int(round(time.time()*1000000))-tempo < accel_data[i,1]+p):
+	accel_data[i,1]=int(round(time.time()*1000))-tempo
+	while (int(round(time.time()*1000))-tempo == accel_data[i,1]):
 		pass
 
-for i in range (1,n+1):
+    """ for i in range (1,n+1):
 	accel_data[i,0]=accel_data[i,0]/16384
-	#accel_data[i,1]=accel_data[i,1]/16384
-	#accel_data[i,2]=accel_data[i,2]/16384
+	accel_data[i,1]=accel_data[i,1]/16384
+	accel_data[i,2]=accel_data[i,2]/16384
     """
     #numpy.savetxt('teste.txt',accel_data,fmt='%f')
     numpy.savetxt(filename,accel_data,fmt='%i',header=titulo)

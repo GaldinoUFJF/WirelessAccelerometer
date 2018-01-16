@@ -308,18 +308,18 @@ if __name__ == "__main__":
     mpu = mpu6050(0x68)
     #mpu.set_accel_offset()
     duracao=1
-    n=duracao*1000
+    n=duracao*600
     accel_data= numpy.zeros((n+1,2))
     accel_data[0,0]=mpu.get_temp()
-    tempo=int(round(time.time()*1000))
     filename=datetime.datetime.now().strftime("%H%M%S-%Y%m%d")
     titulo=unicode(datetime.datetime.now())
+	tempo=int(round(time.time()*1000000))
     for i in range (1,n+1):
 	#accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_XOUT0)
 	#accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_YOUT0)
 	accel_data[i,0]=mpu.read_i2c_word(mpu.ACCEL_ZOUT0)
-	accel_data[i,1]=int(round(time.time()*1000))-tempo
-	while (int(round(time.time()*1000))-tempo == accel_data[i,1]):
+	accel_data[i,1]=int(round((int(round(time.time()*1000000))-tempo)/1666.66667))
+	while int(round((int(round(time.time()*1000000))-tempo)/1666.66667)) == accel_data[i,1]):
 		pass
 
     """ for i in range (1,n+1):
