@@ -107,12 +107,9 @@ class mpu6050:
 		sx=0;sy=0;sz=0;
      		for i in range (0,n):
                         px=ax; py=ay; pz=az;
-                        while (px==ax):
-                                ax=mpu.read_i2c_word(mpu.ACCEL_XOUT0)
-                        while (py==ay):
-                                ay=mpu.read_i2c_word(mpu.ACCEL_YOUT0)
-                        while (pz==az):
-                                az=mpu.read_i2c_word(mpu.ACCEL_ZOUT0)
+                        ax=mpu.read_i2c_word(mpu.ACCEL_XOUT0)
+                        ay=mpu.read_i2c_word(mpu.ACCEL_YOUT0)
+                        az=mpu.read_i2c_word(mpu.ACCEL_ZOUT0)
 			sx=sx+ax;
 			sy=sy+ay;
 			sz=sz+az;
